@@ -1,0 +1,734 @@
+{
+  "divisas": [
+    {
+      "moneda": "Afghani afgano (AFN)",
+      "codigo": "AFN",
+      "bandera_url": "https://flagcdn.com/w20/af.png"
+    },
+    {
+      "moneda": "Ariary malgache (MGA)",
+      "codigo": "MGA",
+      "bandera_url": "https://flagcdn.com/w20/mg.png"
+    },
+    {
+      "moneda": "Bad Unidad de Cuentas (XUA)",
+      "codigo": "XUA",
+      "bandera_url": "https://flagcdn.com/w20/iso.png"
+    },
+    {
+      "moneda": "Baht tailandes (THB)",
+      "codigo": "THB",
+      "bandera_url": "https://flagcdn.com/w20/th.png"
+    },
+    {
+      "moneda": "Balboa panameño (PAB)",
+      "codigo": "PAB",
+      "bandera_url": "https://flagcdn.com/w20/pa.png"
+    },
+    {
+      "moneda": "Birr etiope (ETB)",
+      "codigo": "ETB",
+      "bandera_url": "https://flagcdn.com/w20/et.png"
+    },
+    {
+      "moneda": "Boliviano boliviano (BOB)",
+      "codigo": "BOB",
+      "bandera_url": "https://flagcdn.com/w20/bo.png"
+    },
+    {
+      "moneda": "Bolivar venezolano (VEF)",
+      "codigo": "VEF",
+      "bandera_url": "https://flagcdn.com/w20/ve.png"
+    },
+    {
+      "moneda": "Cedi de Ghana (GHS)",
+      "codigo": "GHS",
+      "bandera_url": "https://flagcdn.com/w20/gh.png"
+    },
+    {
+      "moneda": "Chelin keniano (KES)",
+      "codigo": "KES",
+      "bandera_url": "https://flagcdn.com/w20/ke.png"
+    },
+    {
+      "moneda": "Chelin somali (SOS)",
+      "codigo": "SOS",
+      "bandera_url": "https://flagcdn.com/w20/so.png"
+    },
+    {
+      "moneda": "Chelin tanzano (TZS)",
+      "codigo": "TZS",
+      "bandera_url": "https://flagcdn.com/w20/tz.png"
+    },
+    {
+      "moneda": "Chelin ugandes (UGX)",
+      "codigo": "UGX",
+      "bandera_url": "https://flagcdn.com/w20/ug.png"
+    },
+    {
+      "moneda": "Colon salvadoreño (SVC)",
+      "codigo": "SVC",
+      "bandera_url": "https://flagcdn.com/w20/sv.png"
+    },
+    {
+      "moneda": "Colon costarricense (CRC)",
+      "codigo": "CRC",
+      "bandera_url": "https://flagcdn.com/w20/cr.png"
+    },
+    {
+      "moneda": "Corona danesa (DKK)",
+      "codigo": "DKK",
+      "bandera_url": "https://flagcdn.com/w20/dk.png"
+    },
+    {
+      "moneda": "Corona islandesa (ISK)",
+      "codigo": "ISK",
+      "bandera_url": "https://flagcdn.com/w20/is.png"
+    },
+    {
+      "moneda": "Corona noruega (NOK)",
+      "codigo": "NOK",
+      "bandera_url": "https://flagcdn.com/w20/no.png"
+    },
+    {
+      "moneda": "Corona sueca (SEK)",
+      "codigo": "SEK",
+      "bandera_url": "https://flagcdn.com/w20/se.png"
+    },
+    {
+      "moneda": "Czech Koruna (CZK)",
+      "codigo": "CZK",
+      "bandera_url": "https://flagcdn.com/w20/cz.png"
+    },
+    {
+      "moneda": "Cordoba oro nicaragüense (NIO)",
+      "codigo": "NIO",
+      "bandera_url": "https://flagcdn.com/w20/ni.png"
+    },
+    {
+      "moneda": "Dalasi gambiano (GMD)",
+      "codigo": "GMD",
+      "bandera_url": "https://flagcdn.com/w20/gm.png"
+    },
+    {
+      "moneda": "Dinar macedonio (MKD)",
+      "codigo": "MKD",
+      "bandera_url": "https://flagcdn.com/w20/mk.png"
+    },
+    {
+      "moneda": "Dinar argelino (DZD)",
+      "codigo": "DZD",
+      "bandera_url": "https://flagcdn.com/w20/dz.png"
+    },
+    {
+      "moneda": "Dinar bareini (BHD)",
+      "codigo": "BHD",
+      "bandera_url": "https://flagcdn.com/w20/bh.png"
+    },
+    {
+      "moneda": "Dinar iraqui (IQD)",
+      "codigo": "IQD",
+      "bandera_url": "https://flagcdn.com/w20/iq.png"
+    },
+    {
+      "moneda": "Dinar jordano (JOD)",
+      "codigo": "JOD",
+      "bandera_url": "https://flagcdn.com/w20/jo.png"
+    },
+    {
+      "moneda": "Dinar kuwaiti (KWD)",
+      "codigo": "KWD",
+      "bandera_url": "https://flagcdn.com/w20/kw.png"
+    },
+    {
+      "moneda": "Dinar libio (LYD)",
+      "codigo": "LYD",
+      "bandera_url": "https://flagcdn.com/w20/ly.png"
+    },
+    {
+      "moneda": "Dinar serbio (RSD)",
+      "codigo": "RSD",
+      "bandera_url": "https://flagcdn.com/w20/rs.png"
+    },
+    {
+      "moneda": "Dinar tunecino (TND)",
+      "codigo": "TND",
+      "bandera_url": "https://flagcdn.com/w20/tn.png"
+    },
+    {
+      "moneda": "Dirham de EAU (AED)",
+      "codigo": "AED",
+      "bandera_url": "https://flagcdn.com/w20/ae.png"
+    },
+    {
+      "moneda": "Dirham marroqui (MAD)",
+      "codigo": "MAD",
+      "bandera_url": "https://flagcdn.com/w20/ma.png"
+    },
+    {
+      "moneda": "Dobra de Santo Tome y Principe (STD)",
+      "codigo": "STD",
+      "bandera_url": "https://flagcdn.com/w20/st.png"
+    },
+    {
+      "moneda": "Dong vietnamita (VND)",
+      "codigo": "VND",
+      "bandera_url": "https://flagcdn.com/w20/vn.png"
+    },
+    {
+      "moneda": "Dram armenio (AMD)",
+      "codigo": "AMD",
+      "bandera_url": "https://flagcdn.com/w20/am.png"
+    },
+    {
+      "moneda": "Dolar australiano (AUD)",
+      "codigo": "AUD",
+      "bandera_url": "https://flagcdn.com/w20/au.png"
+    },
+    {
+      "moneda": "Dolar bahameño (BSD)",
+      "codigo": "BSD",
+      "bandera_url": "https://flagcdn.com/w20/bs.png"
+    },
+    {
+      "moneda": "Dolar beliceño (BZD)",
+      "codigo": "BZD",
+      "bandera_url": "https://flagcdn.com/w20/bz.png"
+    },
+    {
+      "moneda": "Dolar bermudeño (BMD)",
+      "codigo": "BMD",
+      "bandera_url": "https://flagcdn.com/w20/bm.png"
+    },
+    {
+      "moneda": "Dolar canadiense (CAD)",
+      "codigo": "CAD",
+      "bandera_url": "https://flagcdn.com/w20/ca.png"
+    },
+    {
+      "moneda": "Dolar de Barbados (BBD)",
+      "codigo": "BBD",
+      "bandera_url": "https://flagcdn.com/w20/bb.png"
+    },
+    {
+      "moneda": "Dolar de Brunei (BND)",
+      "codigo": "BND",
+      "bandera_url": "https://flagcdn.com/w20/bn.png"
+    },
+    {
+      "moneda": "Dolar de Hong Kong (HKD)",
+      "codigo": "HKD",
+      "bandera_url": "https://flagcdn.com/w20/hk.png"
+    },
+    {
+      "moneda": "Dolar de Islas Salomon (SBD)",
+      "codigo": "SBD",
+      "bandera_url": "https://flagcdn.com/w20/sb.png"
+    },
+    {
+      "moneda": "Dolar de Islas Cook (NZD)",
+      "codigo": "NZD",
+      "bandera_url": "https://flagcdn.com/w20/ck.png"
+    },
+    {
+      "moneda": "Dolar de las Islas Caiman (KYD)",
+      "codigo": "KYD",
+      "bandera_url": "https://flagcdn.com/w20/ky.png"
+    },
+    {
+      "moneda": "Dolar de Namibia (NAD)",
+      "codigo": "NAD",
+      "bandera_url": "https://flagcdn.com/w20/na.png"
+    },
+    {
+      "moneda": "Dolar de Singapur (SGD)",
+      "codigo": "SGD",
+      "bandera_url": "https://flagcdn.com/w20/sg.png"
+    },
+    {
+      "moneda": "Dolar de Surinam (SRD)",
+      "codigo": "SRD",
+      "bandera_url": "https://flagcdn.com/w20/sr.png"
+    },
+    {
+      "moneda": "Dolar de Trinidad y Tobago (TTD)",
+      "codigo": "TTD",
+      "bandera_url": "https://flagcdn.com/w20/tt.png"
+    },
+    {
+      "moneda": "Dolar del Caribe Oriental (XCD)",
+      "codigo": "XCD",
+      "bandera_url": "https://flagcdn.com/w20/lc.png"
+    },
+    {
+      "moneda": "Dolar estadounidense (USD)",
+      "codigo": "USD",
+      "bandera_url": "https://flagcdn.com/w20/us.png"
+    },
+    {
+      "moneda": "Dolar fiyiano (FJD)",
+      "codigo": "FJD",
+      "bandera_url": "https://flagcdn.com/w20/fj.png"
+    },
+    {
+      "moneda": "Dolar guyanes (GYD)",
+      "codigo": "GYD",
+      "bandera_url": "https://flagcdn.com/w20/gy.png"
+    },
+    {
+      "moneda": "Dolar jamaiquino (JMD)",
+      "codigo": "JMD",
+      "bandera_url": "https://flagcdn.com/w20/jm.png"
+    },
+    {
+      "moneda": "Dolar liberiano (LRD)",
+      "codigo": "LRD",
+      "bandera_url": "https://flagcdn.com/w20/lr.png"
+    },
+    {
+      "moneda": "Dolar neozelandes (NZD)",
+      "codigo": "NZD",
+      "bandera_url": "https://flagcdn.com/w20/nz.png"
+    },
+    {
+      "moneda": "Escudo caboverdiano (CVE)",
+      "codigo": "CVE",
+      "bandera_url": "https://flagcdn.com/w20/cv.png"
+    },
+    {
+      "moneda": "Euro (EUR)",
+      "codigo": "EUR",
+      "bandera_url": "https://flagcdn.com/w20/eu.png"
+    },
+    {
+      "moneda": "Florin antillano neerlandes (ANG)",
+      "codigo": "ANG",
+      "bandera_url": "https://flagcdn.com/w20/cw.png"
+    },
+    {
+      "moneda": "Florin arubeño (AWG)",
+      "codigo": "AWG",
+      "bandera_url": "https://flagcdn.com/w20/aw.png"
+    },
+    {
+      "moneda": "Forinto hungaro (HUF)",
+      "codigo": "HUF",
+      "bandera_url": "https://flagcdn.com/w20/hu.png"
+    },
+    {
+      "moneda": "Franco burundes (BIF)",
+      "codigo": "BIF",
+      "bandera_url": "https://flagcdn.com/w20/bi.png"
+    },
+    {
+      "moneda": "Franco CFA de africa Central (XAF)",
+      "codigo": "XAF",
+      "bandera_url": "https://flagcdn.com/w20/cm.png"
+    },
+    {
+      "moneda": "Franco CFA de africa Occidental (XOF)",
+      "codigo": "XOF",
+      "bandera_url": "https://flagcdn.com/w20/bj.png"
+    },
+    {
+      "moneda": "Franco CFP (XPF)",
+      "codigo": "XPF",
+      "bandera_url": "https://flagcdn.com/w20/pf.png"
+    },
+    {
+      "moneda": "Franco comorense (KMF)",
+      "codigo": "KMF",
+      "bandera_url": "https://flagcdn.com/w20/km.png"
+    },
+    {
+      "moneda": "Franco congoleño (CDF)",
+      "codigo": "CDF",
+      "bandera_url": "https://flagcdn.com/w20/cd.png"
+    },
+    {
+      "moneda": "Franco guineano (GNF)",
+      "codigo": "GNF",
+      "bandera_url": "https://flagcdn.com/w20/gn.png"
+    },
+    {
+      "moneda": "Franco ruandes (RWF)",
+      "codigo": "RWF",
+      "bandera_url": "https://flagcdn.com/w20/rw.png"
+    },
+    {
+      "moneda": "Franco suizo (CHF)",
+      "codigo": "CHF",
+      "bandera_url": "https://flagcdn.com/w20/ch.png"
+    },
+    {
+      "moneda": "Franco WIR (CHW)",
+      "codigo": "CHW",
+      "bandera_url": "https://flagcdn.com/w20/ch.png"
+    },
+    {
+      "moneda": "Franco yibutiano (DJF)",
+      "codigo": "DJF",
+      "bandera_url": "https://flagcdn.com/w20/dj.png"
+    },
+    {
+      "moneda": "Gourde haitiano (HTG)",
+      "codigo": "HTG",
+      "bandera_url": "https://flagcdn.com/w20/ht.png"
+    },
+    {
+      "moneda": "Grivnia ucraniana (UAH)",
+      "codigo": "UAH",
+      "bandera_url": "https://flagcdn.com/w20/ua.png"
+    },
+    {
+      "moneda": "Guarani paraguayo (PYG)",
+      "codigo": "PYG",
+      "bandera_url": "https://flagcdn.com/w20/py.png"
+    },
+    {
+      "moneda": "Kina de Papua Nueva Guinea (PGK)",
+      "codigo": "PGK",
+      "bandera_url": "https://flagcdn.com/w20/pg.png"
+    },
+    {
+      "moneda": "Kip laosiano (LAK)",
+      "codigo": "LAK",
+      "bandera_url": "https://flagcdn.com/w20/la.png"
+    },
+    {
+      "moneda": "Krona islandesa (ISK)",
+      "codigo": "ISK",
+      "bandera_url": "https://flagcdn.com/w20/is.png"
+    },
+    {
+      "moneda": "Kuna croata (HRK)",
+      "codigo": "HRK",
+      "bandera_url": "https://flagcdn.com/w20/hr.png"
+    },
+    {
+      "moneda": "Kuwaiti Dinar (KWD)",
+      "codigo": "KWD",
+      "bandera_url": "https://flagcdn.com/w20/kw.png"
+    },
+    {
+      "moneda": "Kyat birmano (MMK)",
+      "codigo": "MMK",
+      "bandera_url": "https://flagcdn.com/w20/mm.png"
+    },
+    {
+      "moneda": "Lari georgiano (GEL)",
+      "codigo": "GEL",
+      "bandera_url": "https://flagcdn.com/w20/ge.png"
+    },
+    {
+      "moneda": "Lek albanes (ALL)",
+      "codigo": "ALL",
+      "bandera_url": "https://flagcdn.com/w20/al.png"
+    },
+    {
+      "moneda": "Leone de Sierra Leona (SLL)",
+      "codigo": "SLL",
+      "bandera_url": "https://flagcdn.com/w20/sl.png"
+    },
+    {
+      "moneda": "Leu moldavo (MDL)",
+      "codigo": "MDL",
+      "bandera_url": "https://flagcdn.com/w20/md.png"
+    },
+    {
+      "moneda": "Leu rumano (RON)",
+      "codigo": "RON",
+      "bandera_url": "https://flagcdn.com/w20/ro.png"
+    },
+    {
+      "moneda": "Lev búlgaro (BGN)",
+      "codigo": "BGN",
+      "bandera_url": "https://flagcdn.com/w20/bg.png"
+    },
+    {
+      "moneda": "Libra de Gibraltar (GIP)",
+      "codigo": "GIP",
+      "bandera_url": "https://flagcdn.com/w20/gi.png"
+    },
+    {
+      "moneda": "Libra de las Islas Malvinas (FKP)",
+      "codigo": "FKP",
+      "bandera_url": "https://flagcdn.com/w20/fk.png"
+    },
+    {
+      "moneda": "Libra de Saint Helena (SHP)",
+      "codigo": "SHP",
+      "bandera_url": "https://flagcdn.com/w20/sh.png"
+    },
+    {
+      "moneda": "Libra egipcia (EGP)",
+      "codigo": "EGP",
+      "bandera_url": "https://flagcdn.com/w20/eg.png"
+    },
+    {
+      "moneda": "Libra esterlina (GBP)",
+      "codigo": "GBP",
+      "bandera_url": "https://flagcdn.com/w20/gb.png"
+    },
+    {
+      "moneda": "Libra libanesa (LBP)",
+      "codigo": "LBP",
+      "bandera_url": "https://flagcdn.com/w20/lb.png"
+    },
+    {
+      "moneda": "Libra siria (SYP)",
+      "codigo": "SYP",
+      "bandera_url": "https://flagcdn.com/w20/sy.png"
+    },
+    {
+      "moneda": "Lira turca (TRY)",
+      "codigo": "TRY",
+      "bandera_url": "https://flagcdn.com/w20/tr.png"
+    },
+    {
+      "moneda": "Manat azerí (AZN)",
+      "codigo": "AZN",
+      "bandera_url": "https://flagcdn.com/w20/az.png"
+    },
+    {
+      "moneda": "Metical mozambiqueño (MZN)",
+      "codigo": "MZN",
+      "bandera_url": "https://flagcdn.com/w20/mz.png"
+    },
+    {
+      "moneda": "Naira nigeriana (NGN)",
+      "codigo": "NGN",
+      "bandera_url": "https://flagcdn.com/w20/ng.png"
+    },
+    {
+      "moneda": "Nakfa eritreo (ERN)",
+      "codigo": "ERN",
+      "bandera_url": "https://flagcdn.com/w20/er.png"
+    },
+    {
+      "moneda": "Ngultrum butanes (BTN)",
+      "codigo": "BTN",
+      "bandera_url": "https://flagcdn.com/w20/bt.png"
+    },
+    {
+      "moneda": "Ouguiya mauritano (MRU)",
+      "codigo": "MRU",
+      "bandera_url": "https://flagcdn.com/w20/mr.png"
+    },
+    {
+      "moneda": "Pa'anga tongano (TOP)",
+      "codigo": "TOP",
+      "bandera_url": "https://flagcdn.com/w20/to.png"
+    },
+    {
+      "moneda": "Peso argentino (ARS)",
+      "codigo": "ARS",
+      "bandera_url": "https://flagcdn.com/w20/ar.png"
+    },
+    {
+      "moneda": "Peso chileno (CLP)",
+      "codigo": "CLP",
+      "bandera_url": "https://flagcdn.com/w20/cl.png"
+    },
+    {
+      "moneda": "Peso colombiano (COP)",
+      "codigo": "COP",
+      "bandera_url": "https://flagcdn.com/w20/co.png"
+    },
+    {
+      "moneda": "Peso cubano (CUP)",
+      "codigo": "CUP",
+      "bandera_url": "https://flagcdn.com/w20/cu.png"
+    },
+    {
+      "moneda": "Peso dominicano (DOP)",
+      "codigo": "DOP",
+      "bandera_url": "https://flagcdn.com/w20/do.png"
+    },
+    {
+      "moneda": "Peso filipino (PHP)",
+      "codigo": "PHP",
+      "bandera_url": "https://flagcdn.com/w20/ph.png"
+    },
+    {
+      "moneda": "Peso mexicano (MXN)",
+      "codigo": "MXN",
+      "bandera_url": "https://flagcdn.com/w20/mx.png"
+    },
+    {
+      "moneda": "Peso uruguayo (UYU)",
+      "codigo": "UYU",
+      "bandera_url": "https://flagcdn.com/w20/uy.png"
+    },
+    {
+      "moneda": "Pula botsuano (BWP)",
+      "codigo": "BWP",
+      "bandera_url": "https://flagcdn.com/w20/bw.png"
+    },
+    {
+      "moneda": "Quetzal guatemalteco (GTQ)",
+      "codigo": "GTQ",
+      "bandera_url": "https://flagcdn.com/w20/gt.png"
+    },
+    {
+      "moneda": "Rand sudafricano (ZAR)",
+      "codigo": "ZAR",
+      "bandera_url": "https://flagcdn.com/w20/za.png"
+    },
+    {
+      "moneda": "Real brasileño (BRL)",
+      "codigo": "BRL",
+      "bandera_url": "https://flagcdn.com/w20/br.png"
+    },
+    {
+      "moneda": "Ringgit malasio (MYR)",
+      "codigo": "MYR",
+      "bandera_url": "https://flagcdn.com/w20/my.png"
+    },
+    {
+      "moneda": "Riyal saudí (SAR)",
+      "codigo": "SAR",
+      "bandera_url": "https://flagcdn.com/w20/sa.png"
+    },
+    {
+      "moneda": "Rupia de las Seychelles (SCR)",
+      "codigo": "SCR",
+      "bandera_url": "https://flagcdn.com/w20/sc.png"
+    },
+    {
+      "moneda": "Rupia india (INR)",
+      "codigo": "INR",
+      "bandera_url": "https://flagcdn.com/w20/in.png"
+    },
+    {
+      "moneda": "Rupia indonesia (IDR)",
+      "codigo": "IDR",
+      "bandera_url": "https://flagcdn.com/w20/id.png"
+    },
+    {
+      "moneda": "Rupia maldiva (MVR)",
+      "codigo": "MVR",
+      "bandera_url": "https://flagcdn.com/w20/mv.png"
+    },
+    {
+      "moneda": "Rupia nepalí (NPR)",
+      "codigo": "NPR",
+      "bandera_url": "https://flagcdn.com/w20/np.png"
+    },
+    {
+      "moneda": "Rupia pakistaní (PKR)",
+      "codigo": "PKR",
+      "bandera_url": "https://flagcdn.com/w20/pk.png"
+    },
+    {
+      "moneda": "Rupia ruandesa (RWF)",
+      "codigo": "RWF",
+      "bandera_url": "https://flagcdn.com/w20/rw.png"
+    },
+    {
+      "moneda": "Rupia seychelense (SCR)",
+      "codigo": "SCR",
+      "bandera_url": "https://flagcdn.com/w20/sc.png"
+    },
+    {
+      "moneda": "Rupia srilankense (LKR)",
+      "codigo": "LKR",
+      "bandera_url": "https://flagcdn.com/w20/lk.png"
+    },
+    {
+      "moneda": "Rupia tanzana (TZS)",
+      "codigo": "TZS",
+      "bandera_url": "https://flagcdn.com/w20/tz.png"
+    },
+    {
+      "moneda": "Rupia ugandesa (UGX)",
+      "codigo": "UGX",
+      "bandera_url": "https://flagcdn.com/w20/ug.png"
+    },
+    {
+      "moneda": "Rupia yagua (YER)",
+      "codigo": "YER",
+      "bandera_url": "https://flagcdn.com/w20/ye.png"
+    },
+    {
+      "moneda": "Shekel israelí (ILS)",
+      "codigo": "ILS",
+      "bandera_url": "https://flagcdn.com/w20/il.png"
+    },
+    {
+      "moneda": "Taka bangladesí (BDT)",
+      "codigo": "BDT",
+      "bandera_url": "https://flagcdn.com/w20/bd.png"
+    },
+    {
+      "moneda": "Taka de las Islas Maldivas (MVR)",
+      "codigo": "MVR",
+      "bandera_url": "https://flagcdn.com/w20/mv.png"
+    },
+    {
+      "moneda": "Tala samoano (WST)",
+      "codigo": "WST",
+      "bandera_url": "https://flagcdn.com/w20/ws.png"
+    },
+    {
+      "moneda": "Tenge kazajo (KZT)",
+      "codigo": "KZT",
+      "bandera_url": "https://flagcdn.com/w20/kz.png"
+    },
+    {
+      "moneda": "Tugrik mongol (MNT)",
+      "codigo": "MNT",
+      "bandera_url": "https://flagcdn.com/w20/mn.png"
+    },
+    {
+      "moneda": "Vatu vanuatuense (VUV)",
+      "codigo": "VUV",
+      "bandera_url": "https://flagcdn.com/w20/vu.png"
+    },
+    {
+      "moneda": "Won norcoreano (KPW)",
+      "codigo": "KPW",
+      "bandera_url": "https://flagcdn.com/w20/kp.png"
+    },
+    {
+      "moneda": "Won surcoreano (KRW)",
+      "codigo": "KRW",
+      "bandera_url": "https://flagcdn.com/w20/kr.png"
+    },
+    {
+      "moneda": "Xelim de Ruanda (RWF)",
+      "codigo": "RWF",
+      "bandera_url": "https://flagcdn.com/w20/rw.png"
+    },
+    {
+      "moneda": "Xelim de Seychelles (SCR)",
+      "codigo": "SCR",
+      "bandera_url": "https://flagcdn.com/w20/sc.png"
+    },
+    {
+      "moneda": "Xelim keniata (KES)",
+      "codigo": "KES",
+      "bandera_url": "https://flagcdn.com/w20/ke.png"
+    },
+    {
+      "moneda": "Xelim somalí (SOS)",
+      "codigo": "SOS",
+      "bandera_url": "https://flagcdn.com/w20/so.png"
+    },
+    {
+      "moneda": "Yen japonés (JPY)",
+      "codigo": "JPY",
+      "bandera_url": "https://flagcdn.com/w20/jp.png"
+    },
+    {
+      "moneda": "Yuan chino (CNY)",
+      "codigo": "CNY",
+      "bandera_url": "https://flagcdn.com/w20/cn.png"
+    },
+    {
+      "moneda": "Zloty polaco (PLN)",
+      "codigo": "PLN",
+      "bandera_url": "https://flagcdn.com/w20/pf.png"
+    }
+  ]
+}
