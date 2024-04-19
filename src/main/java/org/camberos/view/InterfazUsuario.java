@@ -11,69 +11,65 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class InterfazUsuario extends JFrame {
-
     private static final int DEFAULT_DOLAR_INDEX = 51;
     private static final int DEFAULT_PESO_MEXICANO_INDEX = 109;
     private static final String JSON_PATH = "src/main/resources/divisas.json";
     private final Gson gson = new Gson();
+    private String[] nombresMonedas;
+    private Divisa[] divisas;
 
     public InterfazUsuario() {
         initComponents();
-        cargarDatosEnComboBoxDivisas();
-        configurarInterfaz();
+        cargarDatosYConfigurarInterfaz();
     }
 
-    private void configurarInterfaz() {
-        //Agregando placeholder
-        PromptSupport.setPrompt("Ingresa la cantidad a convertir",jTextField1);
-        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, jTextField1);
-        // Cambiando el color del placeholder
-        PromptSupport.setForeground(Color.GRAY, jTextField1);
-        //Hacer los ComboBox sercheables
-        AutoCompleteDecorator.decorate(jComboBox1);
-        AutoCompleteDecorator.decorate(jComboBox2);
-        //Inicializacion de Conversor De Divisas
-        jComboBox1.setSelectedIndex(DEFAULT_DOLAR_INDEX);
-        jComboBox2.setSelectedIndex(DEFAULT_PESO_MEXICANO_INDEX);
-       
-    }
-
-    private void cargarDatosEnComboBoxDivisas() {
+    private void cargarDatosYConfigurarInterfaz() {
         try {
             DatosJSON datos = cargarDatosJSON(JSON_PATH);
+            divisas = datos.divisas;
 
-            if (datos != null && datos.divisas != null) {
-                Divisa[] divisas = datos.divisas;
+            // Obtener nombres de monedas
+            nombresMonedas = Arrays.stream(divisas)
+                    .map(divisa -> divisa.moneda)
+                    .toArray(String[]::new);
 
-                // Creamos un array de nombres de monedas
-                String[] nombresMonedas = Arrays.stream(divisas)
-                        .map(divisa -> divisa.moneda)
-                        .toArray(String[]::new);
+            // Configurar los ComboBox y renderizadores
+            configurarComboBoxes();
 
-                // Creamos un ComboBoxModel que contiene solo los nombres de las monedas
-                DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(nombresMonedas);
-                jComboBox1.setModel(model1);
-
-                // Creamos otro ComboBoxModel para el segundo JComboBox
-                DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(nombresMonedas);
-                jComboBox2.setModel(model2);
-
-                jComboBox1.setRenderer(new DivisaRenderer(divisas));
-                jComboBox2.setRenderer(new DivisaRenderer(divisas));
-            } else {
-                mostrarError("Error al cargar datos desde el archivo JSON");
-            }
         } catch (IOException e) {
             e.printStackTrace();
             mostrarError("Error al cargar datos desde el archivo JSON");
         }
+    }
+
+    private void configurarComboBoxes() {
+        // Crear modelos para ComboBoxes
+        DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(nombresMonedas);
+        jComboBox1.setModel(model1);
+        DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(nombresMonedas);
+        jComboBox2.setModel(model2);
+
+        // Renderizadores
+        jComboBox1.setRenderer(new DivisaRenderer(divisas));
+        jComboBox2.setRenderer(new DivisaRenderer(divisas));
+
+        //Agregando placeholder
+        PromptSupport.setPrompt("Ingresa la cantidad a convertir",jTextField1);
+        PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, jTextField1);
+        PromptSupport.setForeground(Color.GRAY, jTextField1);
+
+        //Hacer los ComboBox sercheables
+        AutoCompleteDecorator.decorate(jComboBox1);
+        AutoCompleteDecorator.decorate(jComboBox2);
+
+        // Asignar el valor por defecto al cargar interfaz
+        jComboBox1.setSelectedIndex(DEFAULT_DOLAR_INDEX);
+        jComboBox2.setSelectedIndex(DEFAULT_PESO_MEXICANO_INDEX);
     }
 
     private DatosJSON cargarDatosJSON(String ruta) throws IOException {
@@ -82,25 +78,9 @@ public class InterfazUsuario extends JFrame {
         }
     }
 
-
-    private void mostrarError(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    static class DatosJSON {
-        Divisa[] divisas;
-    }
-
-    public static class Divisa {
-        String codigo;
-        public String moneda;
-        public String bandera_url;
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
         jPanel1 = new JPanel();
         jLabel1 = new JLabel();
         jPanel2 = new JPanel();
@@ -128,12 +108,11 @@ public class InterfazUsuario extends JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
                 if (!((c >= '0' && c <= '9') || c == '.')) {
-                    e.consume();
+                    evt.consume();
                 }
             }
         });
@@ -239,21 +218,16 @@ public class InterfazUsuario extends JFrame {
         );
 
         pack();
-    }// </editor-fold>
+    }
 
     private void jTextField1ActionPerformed(ActionEvent evt) {
         convertirDivisas();
     }
 
     private void convertirDivisas() {
-
-        int selectedIndex1 = jComboBox1.getSelectedIndex();
-        int selectedIndex2 = jComboBox2.getSelectedIndex();
-
         try {
             DatosJSON datos = cargarDatosJSON(JSON_PATH);
-            realizarConversion(selectedIndex1, selectedIndex2, datos);
-
+            realizarConversion(jComboBox1.getSelectedIndex(), jComboBox2.getSelectedIndex(), datos);
         } catch (IOException e) {
             e.printStackTrace();
             mostrarError("Error al cargar datos desde el archivo JSON");
@@ -262,9 +236,7 @@ public class InterfazUsuario extends JFrame {
 
     private void realizarConversion(int indiceOrigen, int indiceDestino, DatosJSON datos) {
         String amount = jTextField1.getText();
-        if(amount.isEmpty() || amount.matches("\\d*\\.?\\d*")) {
-
-
+        if (!amount.equals("") && amount.matches("\\d*\\.?\\d*")) {
             String fromCurrency = datos.divisas[indiceOrigen].codigo;
             String toCurrency = datos.divisas[indiceDestino].codigo;
 
@@ -272,9 +244,8 @@ public class InterfazUsuario extends JFrame {
             CurrencyDTO resultado = currency.convertCurrency(fromCurrency, toCurrency, amount);
 
             jLabel2.setText(String.format("%.2f", resultado.conversionResult()) + " (" + resultado.targetCode() + ")");
-        }
-        else {
-            mostrarError("Verifica que tu campo no este vacio y hayas ingresado un valor numerico positivo");
+        } else {
+            mostrarError("Verifica que tu campo no esté vacío y hayas ingresado un valor numérico positivo");
         }
     }
 
@@ -283,15 +254,26 @@ public class InterfazUsuario extends JFrame {
     }
 
     private void jButton2ActionPerformed(ActionEvent evt) {
-        int monendaOrigenTemporal = jComboBox1.getSelectedIndex();
+        int monedaOrigenTemporal = jComboBox1.getSelectedIndex();
         jComboBox1.setSelectedIndex(jComboBox2.getSelectedIndex());
-        jComboBox2.setSelectedIndex(monendaOrigenTemporal);
+        jComboBox2.setSelectedIndex(monedaOrigenTemporal);
         convertirDivisas();
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    private void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    static class DatosJSON {
+        Divisa[] divisas;
+    }
+
+    public static class Divisa {
+        String codigo;
+        public String moneda;
+        public String bandera_url;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -305,37 +287,27 @@ public class InterfazUsuario extends JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfazUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                InterfazUsuario interfazUsuario = new InterfazUsuario();
-                interfazUsuario.setVisible(true);
-                interfazUsuario.setLocationRelativeTo(null);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            InterfazUsuario interfazUsuario = new InterfazUsuario();
+            interfazUsuario.setVisible(true);
+            interfazUsuario.setLocationRelativeTo(null);
         });
     }
 
-    // Variables declaration - do not modify
-    private JButton jButton1;
-    private JButton jButton2;
     private JComboBox<String> jComboBox1;
     private JComboBox<String> jComboBox2;
+    private JTextField jTextField1;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JPanel jPanel1;
     private JPanel jPanel2;
     private JSeparator jSeparator1;
-    private JTextField jTextField1;
-    // End of variables declaration
+    private JButton jButton1;
+    private JButton jButton2;
 }
