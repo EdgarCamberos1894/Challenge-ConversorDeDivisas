@@ -31,7 +31,6 @@ public class Main {
 
     }
 
-    // Métodos auxiliares
     /**
      * Procesa la opción elegida por el usuario.
      * @param option La opción elegida por el usuario.
@@ -45,7 +44,6 @@ public class Main {
                 System.out.println(convertCurrency(option, scanner));
                 return askForAnotherOperation(scanner, ventanaThread);
             }
-
             case "7" -> {  // Caso para salir del programa
                 System.out.println(farewellPhrase);
                 closeInterface(ventanaThread);
@@ -60,29 +58,6 @@ public class Main {
                 return false;
             }
         }
-    }
-
-    /**
-     * Pide al usuario que elija si desea realizar otra operación.
-     * @param scanner El objeto Scanner utilizado para leer la entrada del usuario.
-     * @return true si el usuario desea salir, false si desea realizar otra operación.
-     */
-    private static boolean askForAnotherOperation(Scanner scanner, Thread ventanaThread) {
-        System.out.println(askForAnotherOperationMessage);
-        String response = scanner.nextLine();
-
-        while (!response.equals("1") && !response.equals("2")) {
-            System.out.println(invalidOptionMessage);
-            response = scanner.nextLine();
-        }
-
-        if (response.equals("2")) {
-            closeInterface(ventanaThread);
-            System.out.println(farewellPhrase);
-            return true;
-        }
-        return false;
-
     }
 
     /**
@@ -131,6 +106,28 @@ public class Main {
         } while (!isValid);
 
         return amount;
+    }
+
+    /**
+     * Pide al usuario que elija si desea realizar otra operación.
+     * @param scanner El objeto Scanner utilizado para leer la entrada del usuario.
+     * @return true si el usuario desea salir, false si desea realizar otra operación.
+     */
+    private static boolean askForAnotherOperation(Scanner scanner, Thread ventanaThread) {
+        System.out.println(askForAnotherOperationMessage);
+        String response = scanner.nextLine();
+
+        while (!response.equals("1") && !response.equals("2")) {
+            System.out.println(invalidOptionMessage);
+            response = scanner.nextLine();
+        }
+
+        if (response.equals("2")) {
+            closeInterface(ventanaThread);
+            System.out.println(farewellPhrase);
+            return true;
+        }
+        return false;
     }
 
     /**
