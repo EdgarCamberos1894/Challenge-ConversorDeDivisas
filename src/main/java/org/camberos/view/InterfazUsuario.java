@@ -8,6 +8,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -33,7 +34,8 @@ public class InterfazUsuario extends JFrame {
         //Agregando placeholder
         PromptSupport.setPrompt("Ingresa la cantidad a convertir",jTextField1);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, jTextField1);
-
+        // Cambiando el color del placeholder
+        PromptSupport.setForeground(Color.GRAY, jTextField1);
         //Hacer los ComboBox sercheables
         AutoCompleteDecorator.decorate(jComboBox1);
         AutoCompleteDecorator.decorate(jComboBox2);
