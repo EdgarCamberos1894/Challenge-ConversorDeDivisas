@@ -18,8 +18,8 @@ import java.util.Arrays;
 
 public class InterfazUsuario extends JFrame {
 
-    private static final int DEFAULT_DOLAR_INDEX = 52;
-    private static final int DEFAULT_PESO_MEXICANO_INDEX = 110;
+    private static final int DEFAULT_DOLAR_INDEX = 51;
+    private static final int DEFAULT_PESO_MEXICANO_INDEX = 109;
     private static final String JSON_PATH = "src/main/resources/divisas.json";
     private final Gson gson = new Gson();
 

@@ -17,41 +17,21 @@ public class Main {
         Thread ventanaThread = new Thread(Main::initInterface);
         ventanaThread.start();
 
-        // Se crea un objeto Scanner para la entrada del usuario
         Scanner scanner = new Scanner(System.in);
-        boolean shouldExit = false;
+        boolean shouldExit;
 
         // Bucle principal del programa
         do {
-            // Se muestra el menú principal
-            printMainMenu();
-            // Se obtiene la opción del usuario
-            String option = getUserInput(scanner);
-            // Se procesa la opción elegida por el usuario
+            System.out.println(MAIN_MENU);
+            String option = scanner.nextLine();
             shouldExit = processOption(option, scanner, ventanaThread);
         } while (!shouldExit);
 
-        // Se cierra el scanner
         scanner.close();
+
     }
 
     // Métodos auxiliares
-    /**
-     * Imprime el menú principal del programa.
-     */
-    private static void printMainMenu() {
-        System.out.println(MAIN_MENU);
-    }
-
-    /**
-     * Obtiene la entrada del usuario.
-     * @param scanner El objeto Scanner utilizado para leer la entrada del usuario.
-     * @return La entrada del usuario como una cadena de texto.
-     */
-    private static String getUserInput(Scanner scanner) {
-        return scanner.nextLine();
-    }
-
     /**
      * Procesa la opción elegida por el usuario.
      * @param option La opción elegida por el usuario.
@@ -61,24 +41,21 @@ public class Main {
      */
     private static boolean processOption(String option, Scanner scanner, Thread ventanaThread) {
         switch (option) {
-            // Casos para las opciones de conversión de divisas
-            case "1", "2", "3", "4", "5", "6" -> {
+            case "1", "2", "3", "4", "5", "6" -> {  // Casos para las opciones de conversión de divisas
                 System.out.println(convertCurrency(option, scanner));
                 return askForAnotherOperation(scanner, ventanaThread);
             }
-            // Caso para salir del programa
-            case "7" -> {
-                System.out.println("            *********** ¡Hasta luego! *************");
+
+            case "7" -> {  // Caso para salir del programa
+                System.out.println(farewellPhrase);
                 closeInterface(ventanaThread);
                 return true;
             }
-            // Caso para mostrar la interfaz de usuario
-            case "8" -> {
+            case "8" -> { //Caso para mostrar la interfaz grafica
                 showUserInterface(ventanaThread);
-                return false;
+                return true;
             }
-            // Caso para opciones inválidas
-            default -> {
+            default -> {  // Caso para opciones inválidas
                 System.out.println(invalidOptionMessage);
                 return false;
             }
@@ -88,24 +65,24 @@ public class Main {
     /**
      * Pide al usuario que elija si desea realizar otra operación.
      * @param scanner El objeto Scanner utilizado para leer la entrada del usuario.
-     * @param ventanaThread El hilo de la interfaz de usuario.
      * @return true si el usuario desea salir, false si desea realizar otra operación.
      */
     private static boolean askForAnotherOperation(Scanner scanner, Thread ventanaThread) {
         System.out.println(askForAnotherOperationMessage);
-        String response = getUserInput(scanner);
+        String response = scanner.nextLine();
 
         while (!response.equals("1") && !response.equals("2")) {
             System.out.println(invalidOptionMessage);
-            response = getUserInput(scanner);
+            response = scanner.nextLine();
         }
 
         if (response.equals("2")) {
             closeInterface(ventanaThread);
+            System.out.println(farewellPhrase);
             return true;
         }
-
         return false;
+
     }
 
     /**
@@ -115,19 +92,16 @@ public class Main {
      * @return El resultado de la conversión de divisas como una cadena de texto.
      */
     private static String convertCurrency(String option, Scanner scanner) {
+        String amount = getValidAmount(scanner);
         CurrencyOption currencyOption = CURRENCY_OPTIONS.get(option);
-        String fromCurrency = currencyOption.getFromCurrency();
-        String toCurrency = currencyOption.getToCurrency();
 
-        double amount = getValidAmount(scanner);
-
-        CurrencyConverter currencyConverter = new CurrencyConverter();
-        CurrencyDTO result = currencyConverter.convertCurrency(fromCurrency, toCurrency, Double.toString(amount));
+        CurrencyConverterAPI currency = new CurrencyConverterAPI();
+        CurrencyDTO result = currency.convertCurrency(currencyOption.fromCurrency(), currencyOption.toCurrency(), amount);
 
         return String.format("""
                            ******************************
                                       Resultado
-                                     %.2f (%s) 
+                                     %.2f (%s)
                            ******************************
            """, result.conversionResult(), result.targetCode());
     }
@@ -137,17 +111,16 @@ public class Main {
      * @param scanner El objeto Scanner utilizado para leer la entrada del usuario.
      * @return La cantidad válida de divisas.
      */
-    private static double getValidAmount(Scanner scanner) {
-        double amount = 0;
+    private static String getValidAmount(Scanner scanner) {
+        String amount;
         boolean isValid;
 
         do {
             System.out.println("      *******  Ingrese el valor que deseas convertir ****** ");
-            String input = getUserInput(scanner);
+            amount = scanner.nextLine();
 
             try {
-                amount = Double.parseDouble(input);
-                isValid = amount >= 0;
+                isValid = Double.parseDouble(amount) >= 0;
             } catch (NumberFormatException e) {
                 isValid = false;
             }
@@ -174,7 +147,7 @@ public class Main {
      */
     private static void showUserInterface(Thread ventanaThread) {
         System.out.println(loadingMessage);
-        closeInterface(ventanaThread);
+        verifyInterfaceInMemory(ventanaThread);
         interfazUsuario.setVisible(true);
         interfazUsuario.setLocationRelativeTo(null);
     }
@@ -202,9 +175,10 @@ public class Main {
 
     // Variables y mensajes
     private static final String invalidOptionMessage = "     ******** Opción no válida, vuelva a intentarlo ********";
+    private static final String farewellPhrase = "            *********** ¡Hasta luego! *************";
     private static final String loadingMessage = """
              ************************************************
-                  Cargando Interfaz, por favor espere...   
+                  Cargando Interfaz, por favor espere...
              ************************************************
     """;
     private static final String askForAnotherOperationMessage = """
@@ -215,19 +189,19 @@ public class Main {
     """;
     private static final String MAIN_MENU = """
         **********************************************************
-                Sea Bienvenido/a al Conversor de Divisas          
+                Sea Bienvenido/a al Conversor de Divisas
                                                                      
-            1) Dólar (USD)           ==>  Peso Mexicano (MXN)    
-            2) Peso Mexicano (MXN)   ==>  Dólar (USD)            
-            3) Dólar (USD)           ==>  Real Brasileño (BRL)   
-            4) Real Brasileño (BRL)  ==>  Dólar (USD)            
-            5) Dólar (USD)           ==>  Peso Colombiano (COP)  
-            6) Peso Colombiano (COP) ==>  Dólar (USD)            
-            7) Salir                                             
+            1) Dólar (USD)           ==>  Peso Mexicano (MXN)
+            2) Peso Mexicano (MXN)   ==>  Dólar (USD)
+            3) Dólar (USD)           ==>  Real Brasileño (BRL)
+            4) Real Brasileño (BRL)  ==>  Dólar (USD)
+            5) Dólar (USD)           ==>  Peso Colombiano (COP)
+            6) Peso Colombiano (COP) ==>  Dólar (USD)
+            7) Salir
                                                                  
-            8) Interfaz Gráfica                                  
+            8) Interfaz Gráfica
                                                                   
-                             Elija una opción                    
+                             Elija una opción
         **********************************************************
     """;
     private static final Map<String, CurrencyOption> CURRENCY_OPTIONS = Map.of(
@@ -246,30 +220,7 @@ public class Main {
 /**
  * Clase que representa una opción de conversión de divisas.
  */
-class CurrencyOption {
-    private final String fromCurrency;
-    private final String toCurrency;
-
-    public CurrencyOption(String fromCurrency, String toCurrency) {
-        this.fromCurrency = fromCurrency;
-        this.toCurrency = toCurrency;
-    }
-
-    public String getFromCurrency() {
-        return fromCurrency;
-    }
-
-    public String getToCurrency() {
-        return toCurrency;
-    }
+record CurrencyOption(String fromCurrency, String toCurrency) {
 }
 
-/**
- * Clase que realiza la conversión de divisas utilizando una API externa.
- */
-class CurrencyConverter {
-    public CurrencyDTO convertCurrency(String fromCurrency, String toCurrency, String amount) {
-        CurrencyConverterAPI currency = new CurrencyConverterAPI();
-        return currency.convertCurrency(fromCurrency, toCurrency, amount);
-    }
-}
+
