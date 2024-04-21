@@ -5,13 +5,8 @@ El Conversor de Divisas brinda a los usuarios la capacidad de seleccionar una mo
 
 ## Interfaz de Usuario
 ---
-<p align="center">
-  <img src="images/interfazConsola.PNG" alt="Interfaz de Usuario por consola">
-</p>
+![Programa en ejecucion](images/programa_en_ejecucion.gif)
 
-<p align="center">
-  <img src="images/interfazGrafica.PNG" alt="Interfaz de Usuario Gui">
-</p>
 
 
 ## Funcionamiento
