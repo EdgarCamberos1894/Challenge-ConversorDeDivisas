@@ -2,8 +2,11 @@ package org.camberos;
 
 import org.camberos.api.CurrencyConverterAPI;
 import org.camberos.model.CurrencyDTO;
+import org.camberos.utilities.Historial;
 import org.camberos.view.InterfazUsuario;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -48,7 +51,11 @@ public class Main {
                 closeInterface(ventanaThread);
                 return true;
             }
-            case "8" -> { //Caso para mostrar la interfaz grafica
+            case "8" -> {  // Caso para ver historial
+                System.out.println(historial());
+                return askForAnotherOperation(scanner, ventanaThread);
+            }
+            case "9" -> { //Caso para mostrar la interfaz grafica
                 showUserInterface(ventanaThread);
                 return true;
             }
@@ -71,6 +78,9 @@ public class Main {
 
         CurrencyConverterAPI currency = new CurrencyConverterAPI();
         CurrencyDTO result = currency.convertCurrency(currencyOption.fromCurrency(), currencyOption.toCurrency(), amount);
+
+        saveResult(new Date(),amount,result);
+
 
         return String.format("""
                            ******************************
@@ -107,6 +117,16 @@ public class Main {
         return amount;
     }
 
+    private static void saveResult(Date date,String amount, CurrencyDTO result){
+
+        String fromCurrency = result.baseCode();
+        String toCurrency = result.targetCode();
+        String unitPrice = String.format("%.2f", result.conversionRate());
+        String totalPrice = String.format("%.2f", result.conversionResult());
+
+        Historial.guardarResultado(date, fromCurrency, toCurrency, amount, unitPrice, totalPrice, CSV_PATH);
+    }
+
     /**
      * Pide al usuario que elija si desea realizar otra operación.
      * @param scanner El objeto Scanner utilizado para leer la entrada del usuario.
@@ -129,6 +149,31 @@ public class Main {
         return false;
     }
 
+    private static String historial(){
+        Historial historial = new Historial();
+        List<String> lineas = historial.leerCSV(CSV_PATH);
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("    ***************** Historial de conversiones *****************\n\n");
+        for (String linea : lineas) {
+            String[] partes = linea.split(",");
+            String fecha = partes[0];
+            String monedaOrigen = partes[1];
+            String monedaDestino = partes[2];
+            String cantidadOrigen = partes[3];
+            String cantidadDestino = partes[4];
+
+            sb.append("      [").append(fecha).append("] ")
+                    .append("Convertido: ").append(cantidadOrigen).append(" ").append(monedaOrigen)
+                    .append(" A ").append(cantidadDestino).append(" ").append(monedaDestino).append("\n");
+        }
+        sb.append("\n    **************************************************************");
+
+
+        return sb.toString();
+
+    }
+
     /**
      * Inicializa la interfaz de usuario.
      */
@@ -144,6 +189,7 @@ public class Main {
     private static void showUserInterface(Thread ventanaThread) {
         System.out.println(loadingMessage);
         verifyInterfaceInMemory(ventanaThread);
+        interfazUsuario.cargarHistorial();
         interfazUsuario.setVisible(true);
         interfazUsuario.setLocationRelativeTo(null);
     }
@@ -194,8 +240,9 @@ public class Main {
             5) Dólar (USD)           ==>  Peso Colombiano (COP)
             6) Peso Colombiano (COP) ==>  Dólar (USD)
             7) Salir
-                                                                 
-            8) Interfaz Gráfica
+                        
+            8) Historial                                                  
+            9) Interfaz Gráfica
                                                                   
                              Elija una opción
         **********************************************************
@@ -210,6 +257,8 @@ public class Main {
     );
 
     private static InterfazUsuario interfazUsuario;
+    private static final String CSV_PATH = "src/main/resources/historial.csv";
+
 
 }
 

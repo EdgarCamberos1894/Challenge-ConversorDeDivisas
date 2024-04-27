@@ -1,10 +1,10 @@
 package org.camberos.utilities;
 
-import org.camberos.view.InterfazUsuario;
-import org.camberos.view.InterfazUsuario.Divisa;
+import org.camberos.model.Divisas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,12 +12,12 @@ import java.util.Map;
 
 
 public class DivisaRenderer extends DefaultListCellRenderer {
-    private final Map<String, Divisa> divisas;
+    private final Map<String, Divisas> divisas;
 
-    public DivisaRenderer(Divisa[] divisasArray) {
+    public DivisaRenderer(Divisas[] divisasArray) {
         this.divisas = new HashMap<>();
-        for (Divisa divisa : divisasArray) {
-            this.divisas.put(divisa.moneda, divisa);
+        for (Divisas divisas : divisasArray) {
+            this.divisas.put(divisas.moneda(), divisas);
         }
     }
 
@@ -27,11 +27,12 @@ public class DivisaRenderer extends DefaultListCellRenderer {
         super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
         String nombreMoneda = (String) value;
-        Divisa divisa = divisas.get(nombreMoneda);
-        if (divisa != null) {
+        Divisas divisas = this.divisas.get(nombreMoneda);
+        if (divisas != null) {
             setText(nombreMoneda);
             try {  // Intentar cargar la imagen desde la URL de la Divisa
-                URL url = new URL(divisa.bandera_url);
+                URI uri = new URI(divisas.bandera_url());
+                URL url = uri.toURL();
                 setIcon(new ImageIcon(url));
             } catch (Exception e) {  // Manejar erroes de carga ed imagen y URL incorrectas
                 e.printStackTrace();
