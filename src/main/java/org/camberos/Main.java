@@ -1,8 +1,9 @@
 package org.camberos;
 
-import org.camberos.api.CurrencyConverterAPI;
+import org.camberos.model.api.CurrencyConverterAPI;
+import org.camberos.model.Config;
 import org.camberos.model.CurrencyDTO;
-import org.camberos.utilities.Historial;
+import org.camberos.model.Historial;
 import org.camberos.view.InterfazUsuario;
 
 import java.util.Date;
@@ -85,9 +86,9 @@ public class Main {
         return String.format("""
                            ******************************
                                       Resultado
-                                     %.2f (%s)
+                               %.2f %s ==> %.2f %s
                            ******************************
-           """, result.conversionResult(), result.targetCode());
+           """,Double.parseDouble(amount),result.baseCode(),result.conversionResult(), result.targetCode());
     }
 
     /**
@@ -118,7 +119,6 @@ public class Main {
     }
 
     private static void saveResult(Date date,String amount, CurrencyDTO result){
-
         String fromCurrency = result.baseCode();
         String toCurrency = result.targetCode();
         String unitPrice = String.format("%.2f", result.conversionRate());
@@ -152,9 +152,9 @@ public class Main {
     private static String historial(){
         Historial historial = new Historial();
         List<String> lineas = historial.leerCSV(CSV_PATH);
-        StringBuilder sb = new StringBuilder();
+        StringBuilder historialSB = new StringBuilder();
 
-        sb.append("    ***************** Historial de conversiones *****************\n\n");
+        historialSB.append("    ***************** Historial de conversiones *****************\n\n");
         for (String linea : lineas) {
             String[] partes = linea.split(",");
             String fecha = partes[0];
@@ -163,15 +163,13 @@ public class Main {
             String cantidadOrigen = partes[3];
             String cantidadDestino = partes[4];
 
-            sb.append("      [").append(fecha).append("] ")
+            historialSB.append("      [").append(fecha).append("] ")
                     .append("Convertido: ").append(cantidadOrigen).append(" ").append(monedaOrigen)
                     .append(" A ").append(cantidadDestino).append(" ").append(monedaDestino).append("\n");
         }
-        sb.append("\n    **************************************************************");
+        historialSB.append("\n    **************************************************************");
 
-
-        return sb.toString();
-
+        return historialSB.toString();
     }
 
     /**
@@ -216,6 +214,8 @@ public class Main {
     }
 
     // Variables y mensajes
+    private static InterfazUsuario interfazUsuario;
+    private static final String CSV_PATH = Config.getInstance().getCsvPath();
     private static final String invalidOptionMessage = "     ******** Opción no válida, vuelva a intentarlo ********";
     private static final String farewellPhrase = "            *********** ¡Hasta luego! *************";
     private static final String loadingMessage = """
@@ -255,17 +255,11 @@ public class Main {
             "5", new CurrencyOption("USD", "COP"),
             "6", new CurrencyOption("COP", "USD")
     );
-
-    private static InterfazUsuario interfazUsuario;
-    private static final String CSV_PATH = "src/main/resources/historial.csv";
-
-
 }
 
 /**
  * Clase que representa una opción de conversión de divisas.
  */
-record CurrencyOption(String fromCurrency, String toCurrency) {
-}
+record CurrencyOption(String fromCurrency, String toCurrency) {}
 
 

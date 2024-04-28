@@ -1,34 +1,33 @@
 package org.camberos.view;
 
 import com.google.gson.Gson;
-import org.camberos.controller.DivisasController;
+import org.camberos.model.Config;
+import org.camberos.controller.CurrencyController;
 import org.camberos.model.CurrencyDTO;
 import org.camberos.model.Divisas;
 import org.camberos.model.DatosJSON;
-import org.camberos.utilities.DivisaRenderer;
-import org.camberos.utilities.Historial;
+import org.camberos.view.render.JComboBoxRenderer;
+import org.camberos.model.Historial;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.jdesktop.swingx.prompt.PromptSupport;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 public class InterfazUsuario extends JFrame {
-    private static final String JSON_PATH = "src/main/resources/divisas.json";
-    private static final String CSV_PATH = "src/main/resources/historial.csv";
+    private static final String JSON_PATH = Config.getInstance().getJsonPath();
+    private static final String CSV_PATH = Config.getInstance().getCsvPath();
     private static final int DEFAULT_DOLAR_INDEX = 51;
     private static final int DEFAULT_PESO_MEXICANO_INDEX = 109;
 
     private final Gson gson = new Gson();
     private DatosJSON datos;
-
 
     public InterfazUsuario() {
         initComponents();
@@ -38,7 +37,7 @@ public class InterfazUsuario extends JFrame {
     }
 
     private void cargarDatosDivisas() {
-        datos = DivisasController.cargarDatosDivisasJSON(JSON_PATH);
+        datos = CurrencyController.cargarDatosDivisasJSON(JSON_PATH);
     }
 
     private void ConfigurarInterfazComboBox() {
@@ -53,8 +52,8 @@ public class InterfazUsuario extends JFrame {
         jComboBox2.setModel(model2);
 
         // Renderizadores
-        jComboBox1.setRenderer(new DivisaRenderer(divisas));
-        jComboBox2.setRenderer(new DivisaRenderer(divisas));
+        jComboBox1.setRenderer(new JComboBoxRenderer(divisas));
+        jComboBox2.setRenderer(new JComboBoxRenderer(divisas));
 
         //Agregando placeholder
         PromptSupport.setPrompt("Ingresa la cantidad a convertir",jTextField1);
@@ -111,7 +110,7 @@ public class InterfazUsuario extends JFrame {
         String cantidad = jTextField1.getText();
 
         if (validarCantidad(cantidad)) {
-            CurrencyDTO resultado = DivisasController.convertirDivisas(datos, indiceDivisaOrigen, indiceDivisaDestino, cantidad);
+            CurrencyDTO resultado = CurrencyController.convertirDivisas(datos, indiceDivisaOrigen, indiceDivisaDestino, cantidad);
             actualizarResultado(resultado);
             guardarResultado(new Date(),resultado, cantidad);
         } else {
@@ -125,7 +124,7 @@ public class InterfazUsuario extends JFrame {
 
     private void actualizarResultado(CurrencyDTO resultado) {
         String precioTotal = String.format("%.2f", resultado.conversionResult());
-        jLabel2.setText(precioTotal + " (" + resultado.targetCode() + ")");
+        jLabel2.setText(precioTotal +" "+resultado.targetCode());
     }
 
     private void guardarResultado(Date fecha,CurrencyDTO resultado, String cantidad) {
@@ -140,7 +139,7 @@ public class InterfazUsuario extends JFrame {
     }
 
     private void actualizarTabla(Date fecha, String monedaOrigen, String monedaDestino, String cantidad, String precioUnitario, String precioTotal){
-        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss");
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(Config.getInstance().getDateFormat());
         String fechaFormato = DATE_FORMAT.format(fecha);
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -254,12 +253,6 @@ public class InterfazUsuario extends JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(14, 14, 14))
         );
-
-
-
-
-
-
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
